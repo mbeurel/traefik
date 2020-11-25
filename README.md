@@ -6,6 +6,11 @@ Configuration for Traefik v1.7
 
 [Documentation - Traefik v1.7](https://docs.traefik.io/v1.7)
 
+**View Traefik helper**
+```bash
+docker run traefik:2.2 --help
+```
+
 [Documentation - Docker](https://docs.docker.com/)
 
 ## Install Docker & Docker Compose
@@ -17,7 +22,7 @@ Configuration for Traefik v1.7
 
 **Create Config dir and ssl dir**
 ```bash
-mkdir -p config/ssl
+mkdir -p config/certs
 ```
 
 ### Generate Certificat SSL
@@ -65,12 +70,19 @@ cp .env.dist .env
 ```bash
 vi .env
 ```
-_Put your 'TRAEFIK_DOMAIN' and 'TRAEFIK_PASSWORD'_
+_Enter your 'TRAEFIK_DOMAIN', 'TRAEFIK_PASSWORD' and 'TRAEFIK_EMAIL'_
 
 **Start Docker composer**
 ```bash
 docker-compose  up # -d to detach container
 ```
+
+**Add 'TRAEFIK_DOMAIN' to your host**
+```bash
+sudo echo "127.0.0.1  YOUR_TRAEFIK_DOMAIN"  >> /etc/hosts
+```
+
+Open your favorite navigator and enter your 'TRAEFIK_DOMAIN'
 
 Great, your traefik is configure and start !
 
