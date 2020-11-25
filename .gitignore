@@ -1,4 +1,5 @@
 .idea
 .git
 .env
-config/
+config/acme.json
+config/certs
