@@ -20,9 +20,9 @@ docker run traefik:2.2 --help
 
 ## Configuration
 
-**Create Config dir and ssl dir**
+**Create certs and log dir**
 ```bash
-mkdir -p config/certs
+mkdir -p config/certs && mkdir -p config/log
 ```
 
 ### Generate Certificat SSL
