@@ -61,6 +61,17 @@ docker network create traefik
 docker run --rm --name apache httpd:alpine htpasswd -nb YOUR-LOGIN YOUR-PASSWORD
 ```
 
+**Copy traefik config**
+```bash
+cp config/traefik.yml.dist config/traefik.yml
+```
+
+**Edit traefik config**
+```bash
+vi config/traefik.yml
+```
+_Enter your email for the letsencrypt certificates resolvers_
+
 **Copy environnement file**
 ```bash
 cp .env.dist .env
@@ -70,7 +81,7 @@ cp .env.dist .env
 ```bash
 vi .env
 ```
-_Enter your 'TRAEFIK_DOMAIN', 'TRAEFIK_PASSWORD' and 'TRAEFIK_EMAIL'_
+_Enter your 'TRAEFIK_DOMAIN', 'TRAEFIK_PASSWORD'_
 
 **Start Docker composer**
 ```bash

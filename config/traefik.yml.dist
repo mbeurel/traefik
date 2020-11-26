@@ -1,0 +1,61 @@
+accessLog:
+  filePath: /etc/traefik/log/access.log
+  bufferingSize: 100
+  filters:
+    statusCodes:
+      - 200
+      - 300-302
+      - 400-499
+    retryAttempts: true
+    minDuration: 10ms
+api:
+  dashboard: true
+  insecure: false
+  debug: false
+
+tls:
+  certificates:
+    - certFile: /etc/traefik/certs/server.crt
+      keyFile:  /etc/traefik/certs/server.key
+      stores:
+        - default
+  stores:
+    default:
+      defaultCertificate:
+        certFile: /etc/traefik/certs/server.crt
+        keyFile: /etc/traefik/certs/server.key
+
+certificatesResolvers:
+  letsencrypt:
+    acme:
+      email: "your@email.com"
+      httpChallenge:
+        entryPoint: web
+
+log:
+  level: "INFO"
+
+providers:
+  file:
+    filename: /etc/traefik/traefik.yml
+    watch:    true
+
+  docker:
+    endpoint: "unix:///var/run/docker.sock"
+    watch: true
+    exposedbydefault: false
+    swarmmode: false
+
+
+entryPoints:
+  websecure:
+    address: ":443"
+  web:
+    address: ":80"
+
+http:
+  middlewares:
+    redirect-to-https:
+      redirectScheme:
+        scheme: https
+        permanent: true

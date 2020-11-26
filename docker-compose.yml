@@ -8,42 +8,19 @@ services:
       - traefik
     ports:
       - "80:80"
+      - "8080:8080"
       - "443:443"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "./config:/etc/traefik/"
     restart: unless-stopped
-    command:
-      - --accesslog=true
-      - --api=true
-      - --api.dashboard=true
-      - --api.insecure=false
-      - --api.debug=false
-      - --providers.docker=true
-      - --providers.docker.endpoint=unix:///var/run/docker.sock
-      - --providers.docker.exposedByDefault=false
-      - --providers.docker.swarmmode=false
-      - --providers.docker.watch=false
-      - --providers.file.directory=/etc/traefik
-      - --providers.file.watch=true
-      - --entrypoints.web=true
-      - --entrypoints.web.address=:80
-      - --entrypoints.websecure=true
-      - --entrypoints.websecure.address=:443
-      - --log=true
-      - --log.level=ERROR
-      - --certificatesresolvers.letsencrypt.acme.email=${TRAEFIK_EMAIL}
-      - --certificatesresolvers.letsencrypt.acme.storage=/etc/traefik/acme.json
-      - --certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=web
     labels:
       - "traefik.enable=true"
       - "traefik.http.middlewares.auth.basicAuth.users=admin:${TRAEFIK_PASSWORD}"
-      - "traefik.http.middlewares.redirect-to-https.redirectScheme.scheme=https"
-      - "traefik.http.middlewares.redirect-to-https.redirectScheme.permanent=true"
       - "traefik.http.routers.traefik.rule=Host(`${TRAEFIK_DOMAIN}`)"
       - "traefik.http.routers.traefik.service=api@internal"
       - "traefik.http.routers.traefik.entryPoints=web"
-      - "traefik.http.routers.traefik.middlewares=auth,redirect-to-https"
+      - "traefik.http.routers.traefik.middlewares=auth,redirect-to-https@file"
       - "traefik.http.routers.traefik-https.rule=Host(`${TRAEFIK_DOMAIN}`)"
       - "traefik.http.routers.traefik-https.service=api@internal"
       - "traefik.http.routers.traefik-https.entryPoints=websecure"

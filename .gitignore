@@ -2,4 +2,6 @@
 .git
 .env
 config/acme.json
-config/certs
+config/certs/*
+config/log/*
+config/traefik.yml
