@@ -8,7 +8,7 @@ Configuration for Traefik v1.7
 
 **View Traefik helper**
 ```bash
-docker run traefik:2.2 --help
+docker run traefik:1.7 --help
 ```
 
 [Documentation - Docker](https://docs.docker.com/)

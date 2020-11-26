@@ -3,3 +3,4 @@
 .env
 config/acme.json
 config/certs
+config/log
