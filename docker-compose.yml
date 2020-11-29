@@ -10,6 +10,8 @@ services:
       - "80:80"
       - "8080:8080"
       - "443:443"
+      - "5432:5432"
+      - "3306:3306"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "./config:/etc/traefik/"

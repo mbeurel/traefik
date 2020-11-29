@@ -5,3 +5,4 @@ config/acme.json
 config/certs/*
 config/log/*
 config/traefik.yml
+tmp/
