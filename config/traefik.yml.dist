@@ -52,6 +52,10 @@ entryPoints:
     address: ":443"
   web:
     address: ":80"
+  postgresql:
+    address: ":5432"
+  mysql:
+    address: ":3306"
 
 http:
   middlewares:
