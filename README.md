@@ -72,6 +72,11 @@ vi config/traefik.yml
 ```
 _Enter your email for the letsencrypt certificates resolvers_
 
+**Copy docker-compose**
+```bash
+cp docker-compose.yml.dist docker-compose.yml
+```
+
 **Copy environnement file**
 ```bash
 cp .env.dist .env

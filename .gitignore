@@ -5,4 +5,7 @@ config/acme.json
 config/certs/*
 config/log/*
 config/traefik.yml
+letsenscrypt
 tmp/
+docker-compose.ovh.yml
+docker-compose.yml.dist
